@@ -67,4 +67,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
         myMap.geoObjects.add(myPlacemark);
     }
+
+    // Testimonial functionality
+    document.getElementById('testimonial-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Предотвращаем отправку формы
+
+        // Получаем значения из формы
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('message').value;
+
+        // Создаем новый элемент отзыва
+        const testimonial = document.createElement('div');
+        testimonial.classList.add('testimonial');
+
+        const messageParagraph = document.createElement('p');
+        messageParagraph.textContent = `«${message}»`;
+        testimonial.appendChild(messageParagraph);
+
+        const nameParagraph = document.createElement('p');
+        nameParagraph.innerHTML = `<strong>${name}</strong>`;
+        testimonial.appendChild(nameParagraph);
+
+        // Добавляем новый отзыв в начало списка отзывов
+        const contentBlock = document.querySelector('.content-block');
+        contentBlock.insertBefore(testimonial, contentBlock.firstChild);
+
+        // Очищаем форму
+        document.getElementById('testimonial-form').reset();
+    });
 });
